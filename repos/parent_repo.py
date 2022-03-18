@@ -54,3 +54,8 @@ def pets(id):
         pet = Pet(row['name'], row['dob'],row['species'], parent, doctor, row['treatment_notes'], row['id'])
         pets.append(pet)
     return pets
+
+def update(parent):
+    sql = "UPDATE parents SET (name, phone, email, address) = (%s, %s, %s, %s) WHERE id = %s"
+    values = [parent.name, parent.phone, parent.email, parent.address, parent.id]
+    run_sql(sql, values)

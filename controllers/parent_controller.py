@@ -26,3 +26,14 @@ def add_parent():
 def show_parent(id):
     parent = parent_repo.select(id)
     return render_template('/parents/show.html', parent=parent)
+
+@parents_blueprint.route('/parents/edit/<id>')
+def edit(id):
+    parent = parent_repo.select(id)
+    return render_template("/parents/edit.html", parent=parent)
+
+@parents_blueprint.route('/parents/edit/<id>', methods=['POST'])
+def update(id):
+    parent = Parent(request.form['name'], request.form['phone'], request.form['email'], request.form['address'], id)
+    parent_repo.update(parent)
+    return redirect('/parents')
