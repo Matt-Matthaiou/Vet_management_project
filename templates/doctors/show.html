@@ -1,0 +1,9 @@
+{%extends 'base.html'%} {%block content%}
+
+<p><b>Name: </b>{{doctor.name}}</p>
+<p><b>Phone: </b>{{doctor.phone}}</p>
+<p><b>Email: </b>{{doctor.email}}</p>
+<p><b>Address: </b>{{doctor.address}}</p>
+<a href=/doctors/edit/{{doctor.id}}><button >Edit</button></a> <a href='/doctors/delete/{{doctor.id}}'><button>Delete</button></a>
+
+{%endblock%}

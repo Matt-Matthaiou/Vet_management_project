@@ -24,3 +24,24 @@ def add_doctor():
     doctor = Doctor(request.form['name'], request.form['phone'], request.form['email'], request.form['address'])
     doctor_repo.save(doctor)
     return redirect('/doctors')
+
+@doctors_blueprint.route('/doctors/show/<id>')
+def show(id):
+    doctor = doctor_repo.select(id)
+    return render_template('/doctors/show.html', doctor=doctor)
+
+@doctors_blueprint.route('/doctors/delete/<id>')
+def delete(id):
+    doctor_repo.delete(id)
+    return redirect('/doctors')
+
+@doctors_blueprint.route('/doctors/edit/<id>')
+def edit(id):
+    doctor = doctor_repo.select(id)
+    return render_template("/doctors/edit.html", doctor=doctor)
+
+@doctors_blueprint.route('/doctors/edit/<id>', methods=['POST'])
+def update(id):
+    doctor = Doctor(request.form['name'], request.form['phone'], request.form['email'], request.form['address'], id)
+    doctor_repo.update(doctor)
+    return redirect('/doctors')

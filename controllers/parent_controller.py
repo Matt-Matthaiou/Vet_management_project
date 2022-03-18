@@ -37,3 +37,8 @@ def update(id):
     parent = Parent(request.form['name'], request.form['phone'], request.form['email'], request.form['address'], id)
     parent_repo.update(parent)
     return redirect('/parents')
+
+@parents_blueprint.route('/parents/delete/<id>')
+def delete(id):
+    parent_repo.delete(id)
+    return redirect('/parents')
