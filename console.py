@@ -6,14 +6,12 @@ import repos.doctor_repo as doctor_repo
 doctor1=Doctor('Bob', "097-131455", "bob@hotmail.com", "5 vet road EH2 9TR")
 doctor2=Doctor("John", "098-126327", "John@hotmail.com", "6 vet road EH2 9TR")
 
+doctor_repo.delete(2)
+
 doctors = doctor_repo.select_all()
 for doctor in doctors:
     print(doctor.__dict__)
 
-doctor = doctor_repo.select(1)
-print(doctor.__dict__)
 
-doctor = doctor_repo.select(2)
-print(doctor.__dict__)
 
 pdb.set_trace()

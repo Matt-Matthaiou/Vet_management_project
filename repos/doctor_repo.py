@@ -19,7 +19,7 @@ def save(doctor):
     return doctor
 
 def delete_all():
-    sql = "DELETE * FROM doctors"
+    sql = "DELETE FROM doctors"
     run_sql(sql)
 
 def select(id):
@@ -28,3 +28,8 @@ def select(id):
     result = run_sql(sql, values)[0]
     doctor = Doctor(result['name'], result['phone'], result['email'], result['address'], result['id'])
     return doctor
+
+def delete(id):
+    sql = "DELETE FROM doctors WHERE id = %s"
+    values = [id]
+    run_sql(sql, values)
