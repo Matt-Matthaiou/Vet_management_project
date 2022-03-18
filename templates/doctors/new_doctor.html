@@ -1,0 +1,16 @@
+{%extends 'base.html'%} {%block content%}
+
+<form action='/doctors/new' method='post'>
+    <label for='name'>Doctor name</label>
+    <input type='text' name='name' id='doctor_name' required>
+    <label for='phone'>Phone number</label>
+    <input type='text' name='phone' id='doctor_phone' required>
+    <label for='email'>Email</label>
+    <input type='text' name='email' id='doctor_email' require>
+    <label for='address'>Address</label>
+    <input type='text' name='address' id='doctor_address' required>
+    
+    <button type='submit'>Submit</button>
+</form>
+
+{%endblock%}
