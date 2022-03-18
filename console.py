@@ -14,6 +14,7 @@ parent1=Parent("Clark Kent", "098-384738", "superman@hotmail.com", "Krypton", 1)
 parent2=Parent("Bruce Wayne", "736-318476", "batman@batcomputer.gov", "Wayne manor")
 
 pet1=Pet('Krypto', "24/07/1980", "dog", parent1, doctor1, "No known treatments for kryptonian dogs")
+pet2=Pet('Trump', "27/07/1986", "dog")
 
 
 
@@ -24,7 +25,7 @@ pets = pet_repo.select_all()
 for pet in pets:
     print(pet.__dict__)
 
-pet = pet_repo.select(1)
-print(pet.__dict__)
+parent = parent_repo.select(6)
+print(parent)
 
 pdb.set_trace()

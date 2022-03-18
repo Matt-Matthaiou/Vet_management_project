@@ -20,7 +20,15 @@ def select_all():
 
 def save(pet):
     sql= "INSERT INTO pets (name, dob, species, parent_id, doctor_id, treatment_notes) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
-    values = [pet.name, pet.dob, pet.species, pet.parent.id, pet.doctor.id, pet.treatment_notes]
+    if pet.parent == None:
+        parent = None
+    else:
+        parent = pet.parent.id
+    if pet.doctor == None:
+        doctor = None
+    else:
+        doctor = pet.doctor.id
+    values = [pet.name, pet.dob, pet.species, parent, doctor, pet.treatment_notes]
     result = run_sql(sql, values)
     pet.id = result[0]['id']
     return pet

@@ -1,0 +1,26 @@
+{%extends 'base.html'%} {%block content%}
+<nav>
+    <a href=/pets/new>Add a new pet</a>
+</nav>
+
+{%for pet in pets%}
+    <p><b>Pet name:</b>{{pet.name}}</p>
+    <p><b>DOB:</b>{{pet.dob}}</p>
+    <p><b>Species:</b>{{pet.species}}</p>
+    {% if pet.parent == None%}
+        <p><b>Parent:</b>No parent :(</p>
+    {%else%}
+        <p><b>Parent:</b>{{pet.parent.name}}</p>
+    {%endif%}
+    <p><b>Phone number:</b>{{pet.parent.phone}}</p>
+    <p><b>Email address:</b>{{pet.parent.email}}</p>
+    <p><b>Address:</b>{{pet.parent.address}}</p>
+    {% if pet.doctor == None%}
+        <p><b>Doctor:</b>No home doctor assigned</p>
+    {%else%}
+        <p><b>Regular doctor:</b>{{pet.doctor.name}}</p>
+    {%endif%}
+        
+{%endfor%}
+
+{%endblock%}

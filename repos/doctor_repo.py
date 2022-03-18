@@ -1,4 +1,4 @@
-from db.run_sql import run_sql
+from db.run_sql import run_sql, run_sql_lite
 from models.doctor import Doctor
 
 def select_all():
@@ -23,11 +23,15 @@ def delete_all():
     run_sql(sql)
 
 def select(id):
-    sql = "SELECT * FROM doctors WHERE id = %s"
-    values = [id]
-    result = run_sql(sql, values)[0]
-    doctor = Doctor(result['name'], result['phone'], result['email'], result['address'], result['id'])
-    return doctor
+    if id == 'none' or id == None:
+        return None
+    else:
+        sql = "SELECT * FROM doctors WHERE id = %s"
+        values = [id]
+        result = run_sql(sql, values)[0]
+        
+        doctor = Doctor(result['name'], result['phone'], result['email'], result['address'], result['id'])
+        return doctor
 
 def delete(id):
     sql = "DELETE FROM doctors WHERE id = %s"

@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+
+<form action='/pets/new' method='post'>
+    <label for='name'>Pet name</label>
+    <input type='text' name='name' id='pet_name'>
+    <label for='species'>Pet species</label>
+    <input type='text' name='species' id='pet_species'>
+    <label for='dob'>Pet date of birth</label>
+    <input type='date' name='dob' id='pet_dob' min='1900-01-01' max='2100-01-01'>
+    <label for='parent'>Select parent</label>
+    <select name='parent'>
+            <option value='none'></option>
+        {% for parent in parents%}
+            <option value={{parent.id}}>{{parent.name}}</option>
+        {%endfor%}
+    </select>
+    <label for='doctor'>Select doctor</label>
+    <select name='doctor'>
+        <option value='none'></option>
+        {% for doctor in doctors%}
+            <option value={{doctor.id}}>{{doctor.name}}</option>
+        {%endfor%}
+    </select>
+    <button type='submit'>Submit</button>
+</form>
+
+{% endblock %}

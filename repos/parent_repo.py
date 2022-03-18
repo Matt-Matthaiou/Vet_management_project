@@ -1,4 +1,4 @@
-from db.run_sql import run_sql
+from db.run_sql import run_sql, run_sql_lite
 
 from models.parent import Parent
 
@@ -24,11 +24,15 @@ def delete_all():
     run_sql(sql)
 
 def select(id):
-    sql = "SELECT * FROM parents WHERE id = %s"
-    values = [id]
-    result = run_sql(sql, values)[0]
-    parent = Parent(result['name'], result['phone'], result['email'], result['address'], result['id'])
-    return parent
+    if id == 'none' or id == None:
+        return None
+        
+    else:
+        sql = "SELECT * FROM parents WHERE id = %s"
+        values = [id]
+        result = run_sql(sql, values)[0]
+        parent = Parent(result['name'], result['phone'], result['email'], result['address'], result['id'])
+        return parent
 
 def delete(id):
     sql = "DELETE FROM parents WHERE id = %s"
