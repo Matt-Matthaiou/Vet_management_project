@@ -1,6 +1,10 @@
 from db.run_sql import run_sql, run_sql_lite
 
 from models.parent import Parent
+from models.pet import Pet
+
+import repos.parent_repo as parent_repo
+import repos.doctor_repo as doctor_repo
 
 def select_all():
     parents = []
@@ -38,3 +42,15 @@ def delete(id):
     sql = "DELETE FROM parents WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def pets(id):
+    pets = []
+    sql = "SELECT * FROM pets WHERE parent_id = %s "
+    values = [id]
+    results = run_sql(sql, values)
+    for row in results:
+        parent = parent_repo.select(row['parent_id'])
+        doctor = doctor_repo.select(row['doctor_id'])
+        pet = Pet(row['name'], row['dob'],row['species'], parent, doctor, row['treatment_notes'], row['id'])
+        pets.append(pet)
+    return pets

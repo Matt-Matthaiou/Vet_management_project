@@ -1,0 +1,21 @@
+{%extends 'base.html'%} {%block content%}
+
+{%for parent in parents%}
+    <p><b>Name:</b>{{parent.name}}</p>
+    <p><b>Phone:</b>{{parent.phone}}</p>
+    <p><b>Email:</b>{{parent.email}}</p>
+    <p><b>Address:</b>{{parent.address}}</p>
+    <b>Pets: </b> <ol>
+                        {%for pet in pets%} 
+                        {%if pet.parent.id == parent.id%}
+                        <li>{{pet.name}} </li>
+                        {%endif%}
+                        {%endfor%}
+                   </ol>
+{%endfor%}
+{%for pet in pets%}
+    
+{%endfor%}
+
+
+{%endblock%}
