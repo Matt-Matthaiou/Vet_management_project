@@ -50,3 +50,16 @@ def delete(id):
     sql = "DELETE FROM pets WHERE id = %s"
     values = [id]
     run_sql(sql, values)
+
+def update(pet):
+    if pet.parent == None:
+        parent = None
+    else:
+        parent = pet.parent.id
+    if pet.doctor == None:
+        doctor = None
+    else:
+        doctor = pet.doctor.id
+    sql = "UPDATE pets SET (name, dob, species, parent_id, doctor_id, treatment_notes) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
+    values = [pet.name, pet.dob, pet.species, parent, doctor, pet.treatment_notes, pet.id]
+    run_sql(sql, values)

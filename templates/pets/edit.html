@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+
+<form action='/pets/edit/{{pet.id}}' method='post'>
+    <label for='name'>Pet name</label>
+    <input type='text' name='name' id='pet_name' value="{{pet.name}}">
+    <label for='species'>Pet species</label>
+    <input type='text' name='species' id='pet_species' value="{{pet.species}}">
+    <label for='dob'>Pet date of birth</label>
+    <input type='date' name='dob' id='pet_dob' min='1900-01-01' max='2100-01-01' value='{{pet.dob}}'>
+    <label for='parent'>Select parent</label>
+    <select name='parent'>
+            <option value='none'></option>
+        {% for parent in parents%}
+        {%if parent.id == pet.parent.id%}
+            <option value={{parent.id}} selected>{{parent.name}}</option>
+        {%else%}
+            <option value={{parent.id}}>{{parent.name}}</option>
+        {%endif%}
+        {%endfor%}
+    </select>
+    <label for='doctor'>Select doctor</label>
+    <select name='doctor'>
+        <option value='none'></option>
+        {% for doctor in doctors%}
+        {%if doctor.id == pet.doctor.id%}
+            <option value={{doctor.id}} selected>{{doctor.name}}</option>
+        {%else%}
+        <option value={{doctor.id}}>{{doctor.name}}</option>
+        {%endif%}
+        {%endfor%}
+    </select>
+    <label for='treatment_notes'>Treatment notes</label>
+    <textarea name='treatment_notes' id='treatment_notes' value='{{pet.treatment_notes}}'></textarea>
+    <button type='submit'>Submit</button>
+</form>
+
+{% endblock %}

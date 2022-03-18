@@ -1,0 +1,13 @@
+{%extends 'base.html'%} {%block content%}
+
+<p><b>Name: </b>{{pet.name}}</p>
+<p><b>Date of birth: </b>{{pet.dob}}</p>
+<p><b>Species: </b>{{pet.species}}</p>
+<p><b>Assigned doctor: </b>{{pet.doctor.name}}</p>
+<p><b>Parent: </b>{{pet.parent.name}}</p>
+<p><b>Phone: </b>{{pet.parent.phone}}</p>
+<p><b>Email: </b>{{pet.parent.email}}</p>
+<p><b>Address: </b>{{pet.parent.address}}</p>
+<a href=/pets/edit/{{pet.id}}><button >Edit</button></a> <a href='/pets/delete/{{pet.id}}'><button>Delete</button></a>
+
+{%endblock%}

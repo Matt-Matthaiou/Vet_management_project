@@ -1,10 +1,11 @@
 {%extends 'base.html'%} {%block content%}
 <nav>
     <a href=/pets/new>Add a new pet</a>
+
 </nav>
 
 {%for pet in pets%}
-    <p><b>Pet name:</b>{{pet.name}}</p>
+    <a href='/pets/show/{{pet.id}}'><p><b>Pet name:</b>{{pet.name}}</p></a>
     <p><b>DOB:</b>{{pet.dob}}</p>
     <p><b>Species:</b>{{pet.species}}</p>
     {% if pet.parent == None%}
