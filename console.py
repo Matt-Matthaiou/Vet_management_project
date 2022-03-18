@@ -10,4 +10,10 @@ doctors = doctor_repo.select_all()
 for doctor in doctors:
     print(doctor.__dict__)
 
+doctor = doctor_repo.select(1)
+print(doctor.__dict__)
+
+doctor = doctor_repo.select(2)
+print(doctor.__dict__)
+
 pdb.set_trace()

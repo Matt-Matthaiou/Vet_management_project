@@ -17,3 +17,14 @@ def save(doctor):
     result = run_sql(sql, values)
     doctor.id = result[0]['id']
     return doctor
+
+def delete_all():
+    sql = "DELETE * FROM doctors"
+    run_sql(sql)
+
+def select(id):
+    sql = "SELECT * FROM doctors WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+    doctor = Doctor(result['name'], result['phone'], result['email'], result['address'], result['id'])
+    return doctor
