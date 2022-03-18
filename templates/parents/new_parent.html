@@ -1,0 +1,16 @@
+{%extends 'base.html'%} {%block content%}
+
+<form action='/parents/new' method='post'>
+    <label for='name'>Parent name</label>
+    <input type='text' name='name' id='parent_name'>
+    <label for='phone'>Phone number</label>
+    <input type='text' name='phone' id='parent_phone'>
+    <label for='email'>Email</label>
+    <input type='text' name='email' id='parent_email'>
+    <label for='address'>Address</label>
+    <input type='text' name='address' id='parent_address'>
+    
+    <button type='submit'>Submit</button>
+</form>
+
+{%endblock%}
