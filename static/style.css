@@ -73,3 +73,7 @@ footer {
 main {
     grid-area: main;
 }
+
+#comments {
+    background-color: white;
+}

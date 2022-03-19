@@ -1,13 +1,29 @@
 {%extends 'base.html'%} {%block content%}
+<section>
+    <p><b>Name: </b>{{pet.name}}</p>
+    <p><b>Date of birth: </b>{{pet.dob}}</p>
+    <p><b>Species: </b>{{pet.species}}</p>
+    <p><b>Assigned doctor: </b>{{pet.doctor.name}}</p>
+    <p><b>Parent: </b>{{pet.parent.name}}</p>
+    <p><b>Phone: </b>{{pet.parent.phone}}</p>
+    <p><b>Email: </b>{{pet.parent.email}}</p>
+    <p><b>Address: </b>{{pet.parent.address}}</p>
+    <a href=/pets/edit/{{pet.id}}><button >Edit</button></a> <a href='/pets/delete/{{pet.id}}'><button>Delete</button></a>
+</section>
+<section>
+    <h3>Medical history:</h3>
+    <div style="height:300px;width:100%;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;" id="comments">
+        {%for comment in comments%}
+        <p>{{comment.comment_date}}  <b>{{comment.doctor.name}}:</b> {{comment.comment}}</p><hr>
+        {%endfor%}
+        </div>
+    <form action='/comment/new/{{pet.id}}' method="post">
+        <label for='comment'>Please add a comment here:</label>
+        <textarea name='comment' id='comment'></textarea>
+        <input type='hidden' name='doctor_id' value="{{pet.doctor.id}}">
+        <button type='submit'>Submit</button>
+    </form>
 
-<p><b>Name: </b>{{pet.name}}</p>
-<p><b>Date of birth: </b>{{pet.dob}}</p>
-<p><b>Species: </b>{{pet.species}}</p>
-<p><b>Assigned doctor: </b>{{pet.doctor.name}}</p>
-<p><b>Parent: </b>{{pet.parent.name}}</p>
-<p><b>Phone: </b>{{pet.parent.phone}}</p>
-<p><b>Email: </b>{{pet.parent.email}}</p>
-<p><b>Address: </b>{{pet.parent.address}}</p>
-<a href=/pets/edit/{{pet.id}}><button >Edit</button></a> <a href='/pets/delete/{{pet.id}}'><button>Delete</button></a>
+</section>
 
 {%endblock%}

@@ -30,7 +30,8 @@ def add_pet():
 @pets_blueprint.route('/pets/show/<id>')
 def show_pet(id):
     pet = pet_repo.select(id)
-    return render_template('pets/show.html', pet=pet)
+    comments = pet_repo.comments(pet)
+    return render_template('pets/show.html', pet=pet, comments=comments)
 
 @pets_blueprint.route('/pets/delete/<id>')
 def delete_pet(id):

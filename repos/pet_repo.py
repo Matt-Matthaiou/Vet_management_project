@@ -2,6 +2,7 @@ from db.run_sql import run_sql
 from models.doctor import Doctor
 from models.parent  import Parent
 from models.pet import Pet
+from models.comment import Comment
 
 import repos.parent_repo as parent_repo
 import repos.doctor_repo as doctor_repo
@@ -63,3 +64,14 @@ def update(pet):
     sql = "UPDATE pets SET (name, dob, species, parent_id, doctor_id, treatment_notes) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
     values = [pet.name, pet.dob, pet.species, parent, doctor, pet.treatment_notes, pet.id]
     run_sql(sql, values)
+
+def comments(pet):
+    comments = []
+    sql = "SELECT * FROM comments WHERE pet_id = %s"
+    values = [pet.id]
+    results = run_sql(sql, values)
+    for row in results:
+        doctor = doctor_repo.select(row['doctor_id'])
+        comment = Comment(row['comment_date'], row['comment'], doctor, pet, row['id'])
+        comments.append(comment)
+    return comments
