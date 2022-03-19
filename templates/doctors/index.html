@@ -1,20 +1,22 @@
 {%extends 'base.html'%} {%block content%}
 <a href='/doctors/new'>Add a doctor</a>
-{%for doctor in doctors%}
-    <section>
-        <a href='/doctors/show/{{doctor.id}}'>
-            <p><b>Name: </b>{{doctor.name}}</p></a>
-            <p><b>Phone: </b>{{doctor.phone}}</p>
-            <p><b>Email: </b>{{doctor.email}}</p>
-            <p><b>Address: </b>{{doctor.address}}</p>
-            <b>Pets under care: </b> <ol>
-                                {%for pet in pets%} 
-                                {%if pet.doctor.id == doctor.id%}
-                                <li>{{pet.name}} </li>
-                                {%endif%}
-                                {%endfor%}
-                        </ol>
-                    
-    </section>
-{%endfor%}
+<section class='info'>
+    {%for doctor in doctors%}
+        <div class='info-box'>
+            <a href='/doctors/show/{{doctor.id}}'>
+                <p><b>Name: </b>{{doctor.name}}</p></a>
+                <p><b>Phone: </b>{{doctor.phone}}</p>
+                <p><b>Email: </b>{{doctor.email}}</p>
+                <p><b>Address: </b>{{doctor.address}}</p>
+                <b>Pets under care: </b> <ol>
+                                    {%for pet in pets%} 
+                                    {%if pet.doctor.id == doctor.id%}
+                                    <li>{{pet.name}} </li>
+                                    {%endif%}
+                                    {%endfor%}
+                            </ol>
+                        
+        </div>
+    {%endfor%}
+</section>
 {%endblock%}

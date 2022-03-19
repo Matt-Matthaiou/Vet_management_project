@@ -1,20 +1,22 @@
 {%extends 'base.html'%} {%block content%}
 <a href='/parents/new'>Add a parent</a>
-{%for parent in parents%}
-    <section>
-        <a href='/parents/show/{{parent.id}}'>
-            <p><b>Name:</b>{{parent.name}}</p></a>
-            <p><b>Phone:</b>{{parent.phone}}</p>
-            <p><b>Email:</b>{{parent.email}}</p>
-            <p><b>Address:</b>{{parent.address}}</p>
-            <b>Pets: </b> <ol>
-                                {%for pet in pets%} 
-                                {%if pet.parent.id == parent.id%}
-                                <li>{{pet.name}} </li>
-                                {%endif%}
-                                {%endfor%}
-                        </ol>
-                    
-    </section>
-{%endfor%}
+<section class='info'>
+    {%for parent in parents%}
+        <div class='info-box'>
+            <a href='/parents/show/{{parent.id}}'>
+                <p><b>Name:</b>{{parent.name}}</p></a>
+                <p><b>Phone:</b>{{parent.phone}}</p>
+                <p><b>Email:</b>{{parent.email}}</p>
+                <p><b>Address:</b>{{parent.address}}</p>
+                <b>Pets: </b> <ol>
+                                    {%for pet in pets%} 
+                                    {%if pet.parent.id == parent.id%}
+                                    <li>{{pet.name}} </li>
+                                    {%endif%}
+                                    {%endfor%}
+                            </ol>
+                        
+        </div>
+    {%endfor%}
+</section>
 {%endblock%}

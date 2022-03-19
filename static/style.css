@@ -1,0 +1,49 @@
+header {
+    background-color: rgba(48, 150, 73, 0.603);
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    
+}
+
+header > ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    list-style-type: none;
+}
+
+header > ul > li > a {
+   text-decoration: none;
+   color: white;
+}
+
+body {
+    
+    background-image: linear-gradient(rgba(81, 206, 81, 0.192),rgba(81, 206, 81, 0.192)), url(images/dogs.jpeg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    
+}
+.info {
+    
+    padding: 5px;
+    
+    margin: 2px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    
+}
+.info-box  {
+  
+  border: 1px solid rgba(48, 59, 48, 0.938);
+  background-color: rgba(233, 194, 215, 0.253);
+  
+
+
+  
+}
