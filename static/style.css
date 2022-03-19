@@ -3,6 +3,8 @@ header {
     margin: 0px;
     padding: 0px;
     display: flex;
+    grid-area: header;
+   
     
 }
 
@@ -20,12 +22,19 @@ header > ul > li > a {
 
 body {
     
-    background-image: linear-gradient(rgba(81, 206, 81, 0.192),rgba(81, 206, 81, 0.192)), url(images/dogs.jpeg);
+    background-image: linear-gradient(rgba(81, 206, 81, 0.192),rgba(81, 206, 81, 0.192)), url(images/Fake\ Vet.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
+    background-position: center;
+    display: grid;
+    grid-template-areas: 
+    "header"
+    "main "
+    "footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
     
 }
 .info {
@@ -37,6 +46,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     
+    
 }
 .info-box  {
   
@@ -46,4 +56,20 @@ body {
 
 
   
+}
+
+footer {
+    background-color: rgba(48, 150, 73, 0.603);
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    text-align: center;
+    grid-area: footer;
+    grid: 10%;
+    
+    
+}
+
+main {
+    grid-area: main;
 }

@@ -1,3 +1,5 @@
+DROP TABLE comments;
+DROP TABLE active_cases;
 DROP TABLE pets;
 DROP TABLE parents;
 DROP TABLE doctors;
@@ -26,4 +28,23 @@ CREATE TABLE pets (
     parent_id INT REFERENCES parents(id) ON DELETE CASCADE,
     doctor_id INT REFERENCES doctors(id),
     treatment_notes TEXT
-)
+);
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    comment_date DATE,
+    comment TEXT,
+    doctor_id INT REFERENCES doctors(id),
+    pet_id  INT REFERENCES pets(id)
+
+);
+
+CREATE TABLE active_cases (
+    id SERIAL PRIMARY KEY,
+    description VARCHAR(255),
+    emergency BOOLEAN,
+    check_in DATE,
+    completed BOOLEAN,
+    pet_id INT REFERENCES pets(id),
+    doctor_id INT REFERENCES doctors(id)
+);
