@@ -1,0 +1,23 @@
+{% extends 'base.html' %}{% block content %}
+
+
+<section class='info'>
+    {%for case in active_cases%}
+        {%if case.doctor.id == doctor.id%}
+        
+            <div class='info-box'>
+            
+                    <p><b>Case descitpion: </b>{{case.description}}</p></a>
+                    <p><b>Pet: </b>{{case.pet.name}}</p>
+                    <form action='dashboard/complete/{{case.id}}' method='post'>
+                       <button type='submit'>Complete case</button>
+                    </form>
+                    
+                            
+            </div>
+        {%endif%}
+    {%endfor%}
+</section>
+
+
+{%endblock%}

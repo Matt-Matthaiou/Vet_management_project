@@ -8,6 +8,14 @@
             
                     <p><b>Case descitpion: </b>{{case.description}}</p></a>
                     <p><b>Pet: </b>{{case.pet.name}}</p>
+                    <form action='dashboard/assign/{{case.id}}' method='post'>
+                        <select name='doctor_id'>
+                            {%for doctor in doctors%}
+                            <option value='{{doctor.id}}'>{{doctor.name}}</option>
+                            {%endfor%}
+                        </select>
+                        <button type='submit'>Assign Case</button>
+                    </form>
                     
                             
             </div>

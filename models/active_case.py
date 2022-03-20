@@ -14,4 +14,3 @@ class Active_case:
         self.completed = completed
 
   
-    

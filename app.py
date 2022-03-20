@@ -6,6 +6,8 @@ from controllers.doctor_controller import doctors_blueprint
 from controllers.comment_controller import comments_blueprint
 from controllers.active_case_controller import active_case_blueprint
 
+import repos.doctor_repo as doctor_repo
+
 app = Flask(__name__)
 
 app.register_blueprint(pets_blueprint)
@@ -16,7 +18,8 @@ app.register_blueprint(active_case_blueprint)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    doctors = doctor_repo.select_all()
+    return render_template('index.html', doctors=doctors)
 
 if __name__ == '__main__':
     app.run(debug=True)

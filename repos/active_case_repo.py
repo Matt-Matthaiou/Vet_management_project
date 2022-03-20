@@ -24,10 +24,21 @@ def save(active_case):
     return active_case
 
 def update(active_case):
+    doctor = None
     sql = "UPDATE active_cases SET (emergency, check_in, completed, doctor_id) = (%s, %s, %s, %s) WHERE id = %s"
     if active_case.doctor == None:
         doctor = None
     else:
         doctor = active_case.doctor.id
-    values = [active_case.emergency, active_case.check_in, active_case.completed, doctor]
+    values = [active_case.emergency, active_case.check_in, active_case.completed, doctor, active_case.id]
     run_sql(sql, values)
+
+def select(id):
+    sql = "SELECT * FROM active_cases WHERE id = %s"
+    values = [id]
+    result = run_sql(sql, values)[0]
+    pet = pet_repo.select(result['pet_id'])
+    doctor = doctor_repo.select(result['doctor_id'])
+    active_case = Active_case(result['description'], result['emergency'], result['check_in'], pet , result['id'] ,  doctor, result['completed'])
+    return active_case
+    
