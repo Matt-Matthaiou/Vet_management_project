@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}{% block content %}
+<form action='/dashboard/new' method='post'>
+    <label for='description'>Description</label>
+    <textarea name='description'id="description"></textarea>
+    <label for='emergency'>Is this an emergency</label>
+    <select name='emergency'>
+        <option [ngValue]='false' selected>No</option>
+        <option [ngValue]='true'>Yes</option>
+    </select>
+    <label for="check_in">Admission date</label>
+    <input type='date' name='check_in'>
+    <label for='pet_id'>Please select pet</label>
+    <select name='pet_id'>
+        {%for pet in pets%}
+        <option value='{{pet.id}}'>{{pet.name}}</option>
+        {%endfor%}
+    </select>
+    <button type='submit'>Submit</button>
+</form>
+{%endblock%}
