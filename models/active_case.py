@@ -7,4 +7,5 @@ class Active_case:
         self.pet = pet
         self.id = id 
         self.doctor = doctor
+        
         self.completed = completed
