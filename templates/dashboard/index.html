@@ -3,13 +3,15 @@
 
 <section class='info'>
     {%for case in active_cases%}
-        <div class='info-box'>
-           
-                <p><b>Case descitpion: </b>{{case.description}}</p></a>
-                <p><b>Pet: </b>{{case.pet.name}}</p>
-                
-                        
-        </div>
+        
+            <div class='info-box'>
+            
+                    <p><b>Case descitpion: </b>{{case.description}}</p></a>
+                    <p><b>Pet: </b>{{case.pet.name}}</p>
+                    
+                            
+            </div>
+        
     {%endfor%}
 </section>
 

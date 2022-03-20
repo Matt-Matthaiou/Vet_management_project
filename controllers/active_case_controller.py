@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
-from models.active_case import Active_case
+from models.active_case import Active_case 
+from datetime import date
+
 
 import repos.active_case_repo as active_case_repo
 import repos.pet_repo as pet_repo
@@ -9,7 +11,12 @@ active_case_blueprint = Blueprint('active_cases', __name__)
 
 @active_case_blueprint.route('/dashboard')
 def dashboard():
-    active_cases=active_case_repo.select_all()
+    unfiltered_cases=active_case_repo.select_all()
+    active_cases = []
+    for case in unfiltered_cases:
+            if case.check_in == date.today():
+                active_cases.append(case)
+       
     return render_template('dashboard/index.html', active_cases = active_cases)
 
 @active_case_blueprint.route('/dashboard/new')

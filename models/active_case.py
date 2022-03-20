@@ -1,3 +1,6 @@
+import datetime
+from datetime import date
+
 class Active_case:
 
     def __init__(self, description, emergency, check_in, pet, id=None, doctor=None, completed=False):
@@ -9,3 +12,6 @@ class Active_case:
         self.doctor = doctor
 
         self.completed = completed
+
+  
+    
