@@ -3,12 +3,15 @@
 
 <section class='info'>
     {%for case in active_cases%}
-        {%if case.doctor.id == doctor.id%}
+        {%if case.doctor.id == doctor.id and case.completed == False%}
         
             <div class='info-box'>
             
                     <p><b>Case descitpion: </b>{{case.description}}</p></a>
                     <p><b>Pet: </b>{{case.pet.name}}</p>
+                    {%if case.emergency == True%}
+                        <p>&#x1F534;</p>
+                    {%endif%}
                     <form action='dashboard/complete/{{case.id}}' method='post'>
                        <button type='submit'>Complete case</button>
                     </form>

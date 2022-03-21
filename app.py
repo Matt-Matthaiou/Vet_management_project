@@ -5,6 +5,7 @@ from controllers.parent_controller import parents_blueprint
 from controllers.doctor_controller import doctors_blueprint
 from controllers.comment_controller import comments_blueprint
 from controllers.active_case_controller import active_case_blueprint
+from controllers.calendar_controller import callendar_blueprint
 
 import repos.doctor_repo as doctor_repo
 
@@ -15,6 +16,7 @@ app.register_blueprint(parents_blueprint)
 app.register_blueprint(doctors_blueprint)
 app.register_blueprint(comments_blueprint)
 app.register_blueprint(active_case_blueprint)
+app.register_blueprint(callendar_blueprint)
 
 @app.route('/')
 def home():

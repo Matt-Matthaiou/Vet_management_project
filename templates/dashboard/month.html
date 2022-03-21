@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% block content %}
+<h3>{{month_header}}</h3>
+<section>
+    <div class='day-box'>
+        <p class='day'>Monday</p>
+        <p class='day'>Tuesday</p>
+        <p class='day'>Wednesday</p>
+        <p class='day'>Thursday</p>
+        <p class='day'>Friday</p>
+        <p class='day'>Saturday</p>
+        <p class='day'>Sunday</p>
+        {%for day in cal%}
+            <p class='cal_day'>{{day.day}}</p>
+        {%endfor%}
+    </div>
+</section>
+
+{%endblock%}
