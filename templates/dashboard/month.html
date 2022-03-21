@@ -15,8 +15,10 @@
                 <ol>
                 {%for case in cases%}
                     {%if case.check_in == day%}
-                    
-                        <li><p>{{case.pet.name}}: {{case.description}}</p></li>
+                        
+                        <li><p>{{case.pet.name}}: {{case.description}} {%if case.completed == True%}
+                            &#9989;	{%endif%}
+                        </p></li>
                     
                     {%endif%}
                 {%endfor%}
