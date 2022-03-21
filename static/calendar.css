@@ -1,9 +1,11 @@
 .day-box {
-    padding: 5px;
+    
     
     
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    margin: 0;
+   
 
     
 }
@@ -11,4 +13,13 @@
 .day {
     border: 1px solid rgba(48, 59, 48, 0.938);
     height: 25px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.cal-day {
+    border: 1px solid rgba(48, 59, 48, 0.938);
+    height: 90px;
+    margin-top: 0;
+    margin-bottom: 0;
 }

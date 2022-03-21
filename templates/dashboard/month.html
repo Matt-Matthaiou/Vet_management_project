@@ -10,7 +10,18 @@
         <p class='day'>Saturday</p>
         <p class='day'>Sunday</p>
         {%for day in cal%}
-            <p class='cal_day'>{{day.day}}</p>
+            <div style="height:90px;width:100%;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;" id='cal-day'>
+                <p>{{day.day}}</p>
+                <ol>
+                {%for case in cases%}
+                    {%if case.check_in == day%}
+                    
+                        <li><p>{{case.pet.name}}: {{case.description}}</p></li>
+                    
+                    {%endif%}
+                {%endfor%}
+            </ol>
+            </div>
         {%endfor%}
     </div>
 </section>
