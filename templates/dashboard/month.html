@@ -15,11 +15,19 @@
                 <ol>
                 {%for case in cases%}
                     {%if case.check_in == day%}
-                        
-                        <li><p>{{case.pet.name}}: {{case.description}} {%if case.completed == True%}
-                            &#9989;	{%endif%}
-                        </p></li>
-                    
+                        {%if case.severity == 1%}
+                            <li><p>{{case.pet.name}}: {{case.description}} {%if case.completed == True%}
+                                &#9989;	{%endif%}
+                            </p></li>
+                        {%elif case.severity == 2%}
+                            <li><p style="background-color: yellow;">{{case.pet.name}}: {{case.description}} {%if case.completed == True%}
+                                &#9989;	{%endif%}
+                            </p></li>
+                        {%else%}
+                            <li><p style="background-color: red;">{{case.pet.name}}: {{case.description}} {%if case.completed == True%}
+                                &#9989;	{%endif%}
+                            </p></li>
+                        {%endif%}
                     {%endif%}
                 {%endfor%}
             </ol>

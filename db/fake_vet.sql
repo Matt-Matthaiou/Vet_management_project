@@ -44,6 +44,7 @@ CREATE TABLE active_cases (
     description VARCHAR(255),
     emergency BOOLEAN,
     check_in DATE,
+    severity INT,
     completed BOOLEAN,
     pet_id INT REFERENCES pets(id),
     doctor_id INT REFERENCES doctors(id)

@@ -29,7 +29,7 @@ def new_case():
 @active_case_blueprint.route('/dashboard/new', methods=['POST'])
 def add_case():
     pet = pet_repo.select(request.form['pet_id'])
-    active_case = Active_case(request.form['description'], request.form['emergency'], request.form['check_in'], pet)
+    active_case = Active_case(request.form['description'], request.form['emergency'], request.form['check_in'], pet, request.form['severity'])
     active_case_repo.save(active_case)
     return redirect('/dashboard')
 

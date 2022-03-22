@@ -16,6 +16,12 @@
         <option value='{{pet.id}}'>{{pet.name}}</option>
         {%endfor%}
     </select>
+    <label for='severity'>Severity</label>
+    <select name='severity'>
+        <option value='1'>low</option>
+        <option value='2'>Medium</option>
+        <option value='3'>High</option>
+    </select>
     <button type='submit'>Submit</button>
 </form>
 {%endblock%}

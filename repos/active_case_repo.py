@@ -12,13 +12,13 @@ def select_all():
     for row in results:
         pet = pet_repo.select(row['pet_id'])
         doctor = doctor_repo.select(row['doctor_id'])
-        active_case = Active_case(row['description'], row['emergency'], row['check_in'], pet, row['id'], doctor, row['completed'])
+        active_case = Active_case(row['description'], row['emergency'], row['check_in'], pet, row['severity'], row['id'], doctor, row['completed'])
         active_cases.append(active_case)
     return active_cases
 
 def save(active_case):
-    sql= "INSERT INTO active_cases (description, emergency, check_in, completed, pet_id, doctor_id) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
-    values = [active_case.description, active_case.emergency, active_case.check_in, active_case.completed, active_case.pet.id, active_case.doctor]
+    sql= "INSERT INTO active_cases (description, emergency, check_in, completed, pet_id, severity, doctor_id) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id"
+    values = [active_case.description, active_case.emergency, active_case.check_in, active_case.completed, active_case.pet.id, active_case.severity, active_case.doctor]
     result = run_sql(sql, values)
     active_case.id = result[0]['id']
     return active_case
@@ -39,6 +39,5 @@ def select(id):
     result = run_sql(sql, values)[0]
     pet = pet_repo.select(result['pet_id'])
     doctor = doctor_repo.select(result['doctor_id'])
-    active_case = Active_case(result['description'], result['emergency'], result['check_in'], pet , result['id'] ,  doctor, result['completed'])
+    active_case = Active_case(result['description'], result['emergency'], result['check_in'], pet ,result['severity'], result['id'] ,  doctor, result['completed'])
     return active_case
-    
