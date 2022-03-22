@@ -1,6 +1,7 @@
 {% extends 'base.html' %}{% block content %}
 <h1>Welcome to Fake Vet! Please log in :)</h1>
+    <h3>Log in as:</h3>
     {%for doctor in doctors%}
-        <a href='/dashboard/{{doctor.id}}'><buton>{{doctor.name}}</buton></a>
+        <a href='/dashboard/{{doctor.id}}'><button>{{doctor.name}}</button></a>
     {%endfor%}
 {% endblock %}

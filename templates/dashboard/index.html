@@ -9,6 +9,9 @@
                         <p><b>Case descitpion: </b>{{case.description}}</p>
                         <a href='/pets/show/{{case.pet.id}}'>
                         <p><b>Pet: </b>{{case.pet.name}}</p></a>
+                        <a href='/doctors/show/{{case.pet.doctor.id}}'>
+                        <p><b>Regular doctor:</b> {{case.pet.doctor.name}}</p>
+                        </a>
                     
                     {%if case.emergency == True%}
                         <p>&#x1F534;</p>
