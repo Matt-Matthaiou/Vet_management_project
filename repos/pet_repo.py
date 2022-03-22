@@ -15,12 +15,12 @@ def select_all():
     for row in results:
         parent = parent_repo.select(row['parent_id'])
         doctor = doctor_repo.select(row['doctor_id'])
-        pet = Pet(row['name'], row['dob'],row['species'], parent, doctor, row['treatment_notes'], row['id'])
+        pet = Pet(row['name'], row['dob'],row['species'], parent, doctor, row['id'])
         pets.append(pet)
     return pets
 
 def save(pet):
-    sql= "INSERT INTO pets (name, dob, species, parent_id, doctor_id, treatment_notes) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
+    sql= "INSERT INTO pets (name, dob, species, parent_id, doctor_id) VALUES (%s, %s, %s, %s, %s) RETURNING id"
     if pet.parent == None:
         parent = None
     else:
@@ -29,7 +29,7 @@ def save(pet):
         doctor = None
     else:
         doctor = pet.doctor.id
-    values = [pet.name, pet.dob, pet.species, parent, doctor, pet.treatment_notes]
+    values = [pet.name, pet.dob, pet.species, parent, doctor]
     result = run_sql(sql, values)
     pet.id = result[0]['id']
     return pet
@@ -44,7 +44,7 @@ def select(id):
     result = run_sql(sql, values)[0]
     parent = parent_repo.select(result['parent_id'])
     doctor = doctor_repo.select(result['doctor_id'])
-    pet = Pet(result['name'], result['dob'], result['species'], parent, doctor, result['treatment_notes'], result['id'])
+    pet = Pet(result['name'], result['dob'], result['species'], parent, doctor, result['id'])
     return pet
 
 def delete(id):
@@ -61,8 +61,8 @@ def update(pet):
         doctor = None
     else:
         doctor = pet.doctor.id
-    sql = "UPDATE pets SET (name, dob, species, parent_id, doctor_id, treatment_notes) = (%s, %s, %s, %s, %s, %s) WHERE id = %s"
-    values = [pet.name, pet.dob, pet.species, parent, doctor, pet.treatment_notes, pet.id]
+    sql = "UPDATE pets SET (name, dob, species, parent_id, doctor_id) = (%s, %s, %s, %s, %s) WHERE id = %s"
+    values = [pet.name, pet.dob, pet.species, parent, doctor, pet.id]
     run_sql(sql, values)
 
 def comments(pet):

@@ -49,6 +49,6 @@ def edit_pet(id):
 def update(id):
     parent = parent_repo.select(request.form['parent'])
     doctor = doctor_repo.select(request.form['doctor'])
-    pet = Pet(request.form['name'], request.form['dob'], request.form['species'], parent, doctor, request.form['treatment_notes'], id)
+    pet = Pet(request.form['name'], request.form['dob'], request.form['species'], parent, doctor, id)
     pet_repo.update(pet)
     return redirect('/pets')

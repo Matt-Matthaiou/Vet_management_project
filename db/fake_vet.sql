@@ -26,8 +26,8 @@ CREATE TABLE pets (
     dob VARCHAR(255),
     species VARCHAR(255),
     parent_id INT REFERENCES parents(id) ON DELETE CASCADE,
-    doctor_id INT REFERENCES doctors(id),
-    treatment_notes TEXT
+    doctor_id INT REFERENCES doctors(id)
+    
 );
 
 CREATE TABLE comments (
