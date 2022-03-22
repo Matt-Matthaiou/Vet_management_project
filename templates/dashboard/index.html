@@ -1,14 +1,15 @@
 {% extends 'base.html' %}{% block content %}
-<a href='/dashboard/new'>Add a new case</a><br><a href='/dashboard/calendar'>Calendar</a>
+<a href='/dashboard/new'><button>Add a new case</button></a><br><a href='/dashboard/calendar'><button>Calendar</button></a>
 
 <section class='info'>
     {%for case in active_cases%}
         {%if case.doctor == None and case.completed == False%}
             <div class='info-box'>
-                    <a href='/pets/show/{{case.pet.id}}'>
-                        <p><b>Case descitpion: </b>{{case.description}}</p></a>
-                        <p><b>Pet: </b>{{case.pet.name}}</p>
-                    </a>
+                    
+                        <p><b>Case descitpion: </b>{{case.description}}</p>
+                        <a href='/pets/show/{{case.pet.id}}'>
+                        <p><b>Pet: </b>{{case.pet.name}}</p></a>
+                    
                     {%if case.emergency == True%}
                         <p>&#x1F534;</p>
                     {%endif%}

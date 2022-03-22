@@ -53,3 +53,12 @@ def complete_case(id):
     case.completed = True
     active_case_repo.update(case)
     return redirect(f'/dashboard/{case.doctor.id}')
+
+@active_case_blueprint.route('/dashboard/dashboard/pend/<id>', methods=['POST'])
+def pend_case(id):
+    case = active_case_repo.select(id)
+    case.check_in = request.form['check_in']
+    url = case.doctor.id
+    case.doctor = None
+    active_case_repo.update(case)
+    return redirect(f'/dashboard/{url}')
