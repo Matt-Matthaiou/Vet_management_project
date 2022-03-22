@@ -15,7 +15,7 @@ def callendar():
     year = date.today().year
     months = {}
     counter = 1
-    while counter < 4:
+    while counter < 7:
         inst = cal.formatmonth(year, month)
         months[inst] = month
         month += 1
