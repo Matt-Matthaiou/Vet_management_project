@@ -51,7 +51,7 @@ def pets(id):
     for row in results:
         parent = parent_repo.select(row['parent_id'])
         doctor = doctor_repo.select(row['doctor_id'])
-        pet = Pet(row['name'], row['dob'],row['species'], parent, doctor, row['treatment_notes'], row['id'])
+        pet = Pet(row['name'], row['dob'],row['species'], parent, doctor, row['picture'], row['id'])
         pets.append(pet)
     return pets
 

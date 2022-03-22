@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
-<form action='/pets/new' method='post'>
+<form action='/pets/new' method='post' enctype="multipart/form-data">
     <label for='name'>Pet name</label>
     <input type='text' name='name' id='pet_name'>
     <label for='species'>Pet species</label>
@@ -21,6 +21,11 @@
             <option value={{doctor.id}}>{{doctor.name}}</option>
         {%endfor%}
     </select>
+    <label for="avatar">Choose a profile picture:</label>
+
+    <input type="file"
+         name="picture"
+        accept="image/png, image/jpeg" required>
     
     <button type='submit'>Submit</button>
 </form>

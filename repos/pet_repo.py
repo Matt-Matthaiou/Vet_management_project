@@ -15,12 +15,12 @@ def select_all():
     for row in results:
         parent = parent_repo.select(row['parent_id'])
         doctor = doctor_repo.select(row['doctor_id'])
-        pet = Pet(row['name'], row['dob'],row['species'], parent, doctor, row['id'])
+        pet = Pet(row['name'], row['dob'],row['species'], parent, doctor, row['picture'], row['id'])
         pets.append(pet)
     return pets
 
 def save(pet):
-    sql= "INSERT INTO pets (name, dob, species, parent_id, doctor_id) VALUES (%s, %s, %s, %s, %s) RETURNING id"
+    sql= "INSERT INTO pets (name, dob, species, parent_id, doctor_id, picture) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id"
     if pet.parent == None:
         parent = None
     else:
@@ -29,7 +29,7 @@ def save(pet):
         doctor = None
     else:
         doctor = pet.doctor.id
-    values = [pet.name, pet.dob, pet.species, parent, doctor]
+    values = [pet.name, pet.dob, pet.species, parent, doctor, pet.picture]
     result = run_sql(sql, values)
     pet.id = result[0]['id']
     return pet
@@ -44,7 +44,7 @@ def select(id):
     result = run_sql(sql, values)[0]
     parent = parent_repo.select(result['parent_id'])
     doctor = doctor_repo.select(result['doctor_id'])
-    pet = Pet(result['name'], result['dob'], result['species'], parent, doctor, result['id'])
+    pet = Pet(result['name'], result['dob'], result['species'], parent, doctor,result['picture'], result['id'])
     return pet
 
 def delete(id):

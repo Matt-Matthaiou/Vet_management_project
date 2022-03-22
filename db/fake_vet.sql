@@ -25,6 +25,7 @@ CREATE TABLE pets (
     name VARCHAR(255),
     dob VARCHAR(255),
     species VARCHAR(255),
+    picture VARCHAR(255),
     parent_id INT REFERENCES parents(id) ON DELETE CASCADE,
     doctor_id INT REFERENCES doctors(id)
     

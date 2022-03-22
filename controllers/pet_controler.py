@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect
 from flask import Blueprint
 from models.pet import Pet
+from PIL import Image
+import os
 
 import repos.pet_repo as pet_repo
 import repos.parent_repo as parent_repo
@@ -23,7 +25,11 @@ def new_pet():
 def add_pet():
     parent = parent_repo.select(request.form['parent'])
     doctor = doctor_repo.select(request.form['doctor'])
-    pet = Pet(request.form['name'], request.form['dob'], request.form['species'], parent, doctor)
+    
+    path = '/Users/matthaiosmatthaiou/codeclan_work/project/fake_vet/static/images'
+    image = request.files['picture']
+    image = image.save(os.path.join(path, image.filename))
+    pet = Pet(request.form['name'], request.form['dob'], request.form['species'], parent,  doctor, request.files['picture'].filename)
     pet_repo.save(pet)
     return redirect('/pets')
 
@@ -47,8 +53,9 @@ def edit_pet(id):
 
 @pets_blueprint.route('/pets/edit/<id>', methods=['POST'] )
 def update(id):
+    old_pet = pet_repo.select(id)
     parent = parent_repo.select(request.form['parent'])
     doctor = doctor_repo.select(request.form['doctor'])
-    pet = Pet(request.form['name'], request.form['dob'], request.form['species'], parent, doctor, id)
+    pet = Pet(request.form['name'], request.form['dob'], request.form['species'], parent, doctor, old_pet.picture, id)
     pet_repo.update(pet)
     return redirect('/pets')
