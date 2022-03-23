@@ -36,7 +36,7 @@ CREATE TABLE comments (
     comment_date DATE,
     comment TEXT,
     doctor_id INT REFERENCES doctors(id),
-    pet_id  INT REFERENCES pets(id)
+    pet_id  INT REFERENCES pets(id) ON DELETE CASCADE
 
 );
 
@@ -47,6 +47,6 @@ CREATE TABLE active_cases (
     check_in DATE,
     severity INT,
     completed BOOLEAN,
-    pet_id INT REFERENCES pets(id),
+    pet_id INT REFERENCES pets(id) ON DELETE CASCADE,
     doctor_id INT REFERENCES doctors(id)
 );
