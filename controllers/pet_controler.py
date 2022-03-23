@@ -28,8 +28,11 @@ def add_pet():
     
     path = '/Users/matthaiosmatthaiou/codeclan_work/project/fake_vet/static/images'
     image = request.files['picture']
-    image = image.save(os.path.join(path, image.filename))
-    pet = Pet(request.form['name'], request.form['dob'], request.form['species'], parent,  doctor, request.files['picture'].filename)
+    ext = image.filename.split('.', 1)[1]
+    split_filename = [request.form['name'], ext]
+    filename = ".".join(split_filename)
+    image = image.save(os.path.join(path, filename))
+    pet = Pet(request.form['name'], request.form['dob'], request.form['species'], parent,  doctor, filename)
     pet_repo.save(pet)
     return redirect('/pets')
 
