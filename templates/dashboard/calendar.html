@@ -1,5 +1,9 @@
 {% extends 'base.html' %}{% block content %}
+    <div class='info'>
     {%for month in months.keys()%}
+    
        <a href='/dashboard/month/{{months[month]}}' >{{month|safe}}</a>
+    
     {%endfor%}
+    </div>
 {%endblock%}
