@@ -27,7 +27,7 @@ CREATE TABLE pets (
     species VARCHAR(255),
     picture VARCHAR(255),
     parent_id INT REFERENCES parents(id) ON DELETE CASCADE,
-    doctor_id INT REFERENCES doctors(id)
+    doctor_id INT REFERENCES doctors(id) ON DELETE SET NULL
     
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
     comment_date DATE,
     comment TEXT,
-    doctor_id INT REFERENCES doctors(id),
+    doctor_id INT REFERENCES doctors(id) ON DELETE SET NULL,
     pet_id  INT REFERENCES pets(id) ON DELETE CASCADE
 
 );
@@ -48,5 +48,5 @@ CREATE TABLE active_cases (
     severity INT,
     completed BOOLEAN,
     pet_id INT REFERENCES pets(id) ON DELETE CASCADE,
-    doctor_id INT REFERENCES doctors(id)
+    doctor_id INT REFERENCES doctors(id) ON DELETE SET NULL
 );
